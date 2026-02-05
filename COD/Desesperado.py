@@ -44,13 +44,11 @@ def animate_text(text, delay, color):
     i = 0
     while i < len(text):
         if text[i] == "(":
-            # imprimir '(' en modo opaco
             sys.stdout.write(f"\033[2m{color}{text[i]}\033[0m")
             sys.stdout.flush()
             time.sleep(delay)
             i += 1
 
-            # imprimir contenido dentro del paréntesis en modo opaco
             sys.stdout.write(f"\033[2m{color}")
             sys.stdout.flush()
             while i < len(text) and text[i] != ")":
@@ -59,7 +57,6 @@ def animate_text(text, delay, color):
                 time.sleep(delay)
                 i += 1
 
-            # imprimir ')'
             if i < len(text) and text[i] == ")":
                 sys.stdout.write(text[i])
                 sys.stdout.flush()
@@ -103,7 +100,6 @@ def sing_song():
             
     finally:
         sys.stdout.flush()
-
 
 if __name__ == "__main__":
     sing_song()
