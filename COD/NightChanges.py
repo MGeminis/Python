@@ -42,36 +42,28 @@ colors = [
     "\033[91m","\033[92m","\033[93m","\033[94m","\033[95m",
 ]
 
+parentesis = False
 def animate_text(text, delay, color):
+    global parentesis
     i = 0
+
     while i < len(text):
-        if text[i] == "(":
-            sys.stdout.write(f"\033[2m{color}{text[i]}\033[0m")
-            sys.stdout.flush()
-            time.sleep(delay)
-            i += 1
+        char = text[i]
 
-            sys.stdout.write(f"\033[2m{color}")
-            sys.stdout.flush()
-            while i < len(text) and text[i] != ")":
-                sys.stdout.write(text[i])
-                sys.stdout.flush()
-                time.sleep(delay)
-                i += 1
-
-            if i < len(text) and text[i] == ")":
-                sys.stdout.write(text[i])
-                sys.stdout.flush()
-                time.sleep(delay)
-                i += 1
-
-            sys.stdout.write("\033[0m")
-            sys.stdout.flush()
+        if char == "(":
+            parentesis = True
+            sys.stdout.write(f"\033[2m{color}{char}\033[0m")
+        elif char == ")":
+            sys.stdout.write(f"\033[2m{color}{char}\033[0m")
+            parentesis = False
+        elif parentesis:
+            sys.stdout.write(f"\033[2m{color}{char}\033[0m")
         else:
-            sys.stdout.write(f"{color}{text[i]}\033[0m")
-            sys.stdout.flush()
-            time.sleep(delay)
-            i += 1
+            sys.stdout.write(f"{color}{char}\033[0m")
+
+        sys.stdout.flush()
+        time.sleep(delay)
+        i += 1
 
 def play_music():
     if not os.path.exists(MUSIC_PATH):
