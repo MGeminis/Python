@@ -3,7 +3,6 @@ import sys
 import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
 import pygame
-import pygame
 
 MUSIC_PATH = r"C:\Python\Song\EnamoradoTuyo.mp3" # ruta de cancion
 MUSIC_START = 160 # segundos de inicio de la cancion
